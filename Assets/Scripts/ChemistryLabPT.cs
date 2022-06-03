@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ChemistryLabPT : MonoBehaviour
 {
+    // Variable Declarations
+
     public Button button;
     public GameObject PTButton;
 
@@ -28,15 +30,18 @@ public class ChemistryLabPT : MonoBehaviour
         
     }
 
+    // This function activates Practice Trail
     void PTButtonOnClick()
     {
         PTButton.SetActive(false);
         beaker.SetActive(true);
         brownBottle.SetActive(true);
         robotInstructions.text = "Grab the Brown Bottle of Bromine (using the controller), and pour it into the beaker.";
-        StartCoroutine(StartTimer());
+        //StartCoroutine(StartTimer());
     }
 
+
+    // Timer Coroutine to deactivate beaker & bottle objects after a certain period of time.
     IEnumerator StartTimer()
     {
         yield return new WaitForSeconds(10.0f);
