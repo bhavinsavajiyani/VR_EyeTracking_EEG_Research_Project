@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PracticeBeaker
   - Exp1BeakerLiquid
+  - BeakerExp2
   layers:
   - Default
   - TransparentFX
