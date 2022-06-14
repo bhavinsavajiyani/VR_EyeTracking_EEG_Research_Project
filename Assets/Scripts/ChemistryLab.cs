@@ -30,14 +30,32 @@ public class ChemistryLab : MonoBehaviour
     public MeshCollider aluminumMeshCollider;
     public CapsuleCollider aluminumCapsuleCollider;
 
+    [Space]
+    [Header("--- Experiment 3 ---")]
+    public GameObject exp3;
+    private bool _isExp3;
+    public GameObject plateExp3;
+    public MeshCollider nitroMethaneMeshCollider;
+    public MeshCollider nitroMethaneFluidMeshCollider;
+    public CapsuleCollider nitroMethaneCapsuleCollider;
+    public MeshCollider methanolMeshCollider;
+    public MeshCollider methanolFluidMeshCollider;
+    public CapsuleCollider methanolCapsuleCollider;
+    public MeshCollider lighterMeshCollider;
+    public BoxCollider lighterBoxCollider;
+    public GameObject flameExp3;
+
+
     // Start is called before the first frame update
     void Start()
     {
         _isExp1 = false;
         _isExp2 = false;
+        _isExp3 = false;
 
         exp1.SetActive(false);
         exp2.SetActive(false);
+        exp3.SetActive(false);
 
         aluminumMeshCollider.enabled = false;
         aluminumCapsuleCollider.enabled = false;
@@ -56,6 +74,11 @@ public class ChemistryLab : MonoBehaviour
         if(_isExp2)
         {
             StartCoroutine(StartExp2());
+        }
+
+        if(_isExp3)
+        {
+            StartCoroutine(StartExp3());
         }
     }
 
@@ -104,11 +127,58 @@ public class ChemistryLab : MonoBehaviour
             _isExp2 = false;
             yield return new WaitForSeconds(0.3f);
             robotInstructions.text = "Well Done!\nYou have completed the Experiment 2.";
+            yield return new WaitForSeconds(12.0f);
+            StartCoroutine(StartExp3());
         }
 
         else
         {
             robotInstructions.text = "Now grab the Brown Bottle of Bromine and pour it into the beaker.";
+        }
+    }
+
+    IEnumerator StartExp3()
+    {
+        _isExp3 = true;
+        yield return new WaitForSeconds(3.0f);
+        exp2.SetActive(false);
+        robotInstructions.text = "Grab the White bottle of Nitromethane and pour it into the plate.";
+        yield return new WaitForSeconds(0.3f);
+        exp3.SetActive(true);
+
+        if(plateExp3.GetComponent<LiquidContainer>().fillAmountPercent == 0.24f && !flameExp3.activeSelf)
+        {
+            nitroMethaneMeshCollider.enabled = false;
+            nitroMethaneFluidMeshCollider.enabled = false;
+            nitroMethaneCapsuleCollider.enabled = false;
+
+            methanolMeshCollider.enabled = true;
+            methanolFluidMeshCollider.enabled = true;
+            methanolCapsuleCollider.enabled = true;
+            robotInstructions.text = "Grab Methanol Test-Tube from the stand and pour it into the plate which contains Nitromethane.";
+        }
+
+        if(plateExp3.GetComponent<LiquidContainer>().fillAmountPercent == 0.9f && !flameExp3.activeSelf)
+        {
+            nitroMethaneMeshCollider.enabled = false;
+            nitroMethaneFluidMeshCollider.enabled = false;
+            nitroMethaneCapsuleCollider.enabled = false;
+
+            methanolMeshCollider.enabled = false;
+            methanolFluidMeshCollider.enabled = false;
+            methanolCapsuleCollider.enabled = false;
+
+            lighterMeshCollider.enabled = true;
+            lighterBoxCollider.enabled = true;
+
+            robotInstructions.text = "Grab the Lighter and light the flame in the plate which contains Nitromethane and Methanol.";
+        }
+
+        else if(plateExp3.GetComponent<LiquidContainer>().fillAmountPercent == 0.9f && flameExp3.activeSelf)
+        {
+            _isExp3 = false;
+            yield return new WaitForSeconds(0.3f);
+            robotInstructions.text = "Well Done!\nYou have completed the Experiment 3.";
         }
     }
 }
