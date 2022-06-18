@@ -11,6 +11,7 @@ public class ChemistryLab : MonoBehaviour
     public GameObject taskButton;
     public Text robotInstructions;
     public GameObject pointLight;
+    public GameObject pointer;
 
     [Space]
     [Header("--- Experiment 1 ---")]
@@ -84,6 +85,7 @@ public class ChemistryLab : MonoBehaviour
 
     void ButtonOnClick()
     {
+        pointer.SetActive(false);
         _isExp1 = true;
     }
 
@@ -179,6 +181,8 @@ public class ChemistryLab : MonoBehaviour
             _isExp3 = false;
             yield return new WaitForSeconds(0.3f);
             robotInstructions.text = "Well Done!\nYou have completed the Experiment 3.";
+            yield return new WaitForSeconds(6.0f);
+            SceneData.NextScene();
         }
     }
 }

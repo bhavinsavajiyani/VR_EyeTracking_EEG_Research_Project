@@ -7595,6 +7595,7 @@ GameObject:
   - component: {fileID: 521162141766408449}
   - component: {fileID: 521162141766408461}
   - component: {fileID: 521162141766408462}
+  - component: {fileID: 521162141766408463}
   m_Layer: 5
   m_Name: UserForm
   m_TagString: Untagged
@@ -7640,6 +7641,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &521162141766408463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521162141766408450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506af4b0642aa491b9c47142c1131588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _username: {fileID: 1788910307}
+  _age: {fileID: 2007137775}
+  _gender: {fileID: 219813589}
+  _highestEducation: {fileID: 319943661}
+  _group: {fileID: 1495051977}
+  _vision: {fileID: 2095612286}
+  _hearing: {fileID: 721461171}
+  _submitButton: {fileID: 6617615878357313607}
 --- !u!222 &6617615878357313601
 CanvasRenderer:
   m_ObjectHideFlags: 0
